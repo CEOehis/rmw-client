@@ -5,7 +5,7 @@ const navLinks = (user) => {
       <li><a href="#/offer-ride">Offer a Ride</a></li>
       <li><a href="#/">View Rides</a></li>
       <li class="dropdown">
-        <a>Hi, ${user.fullName} <i class="fa fa-chevron-down"></i></a>
+        <a>Hi, ${user.fullName.split(' ')[0]} <i class="fa fa-chevron-down"></i></a>
         <ul class="dropdown-content">
           <li><a href="#/profile">Profile</a></li>
           <li><a href="#/my-ride-offers">My Ride Offers</a></li>
