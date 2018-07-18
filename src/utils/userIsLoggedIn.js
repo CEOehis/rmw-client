@@ -14,7 +14,7 @@ const userIsLoggedIn = () => {
   const { exp } = decoded;
   const currentDate = new Date();
 
-  return (exp.getTime() - currentDate.getTime()) > 1;
+  return ((exp * 1000) - currentDate.getTime()) > 1;
 };
 
 export default userIsLoggedIn;

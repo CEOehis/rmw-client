@@ -1,10 +1,10 @@
 const signup = `
   <header class="app-grid">
     <nav class="layout-grid navbar">
-      <h1 class="brand"><a href="#/index" rel="js">RideMyWay</a></h1>
+      <h1 class="brand"><a href="#/" rel="js">RideMyWay</a></h1>
       <button class="menu btn"><i class="fa fa-navicon" aria-hidden="true"></i></button>
       <ul class="nav-links">
-        <li><a class="brand" href="#/index" rel="js">RideMyWay</a></li>
+        <li><a class="brand" href="#/" rel="js">RideMyWay</a></li>
         <li><a href="#/register" rel="js">Register</a></li>
         <li><a href="#/login" rel="js">Login</a></li>
       </ul>
