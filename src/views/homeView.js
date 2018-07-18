@@ -1,5 +1,6 @@
 import userIsLoggedIn from '../utils/userIsLoggedIn';
 import router from '../utils/router'; // eslint-disable-line
+import navbar from '../components/navbar';
 
 const showHomeView = () => {
   if (!userIsLoggedIn()) {
@@ -7,7 +8,11 @@ const showHomeView = () => {
     router('/login');
     return;
   }
-  document.getElementById('app').innerHTML = '<h1>This is the app</h1>';
+  // fetch user information from localstorage
+  const user = JSON.parse(localStorage.getItem('user'));
+  document.getElementById('app').innerHTML = `
+    ${navbar(user)}
+    `;
 };
 
 export default showHomeView;
