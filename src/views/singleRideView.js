@@ -2,6 +2,7 @@ import userIsLoggedIn from '../utils/userIsLoggedIn';
 import router from '../utils/router'; // eslint-disable-line
 import navbar from '../components/navbar';
 import singleRide from '../templates/singleRide.template';
+import joinRide from '../utils/joinRide';
 
 const showSingleRideView = (rideId) => {
   if (!userIsLoggedIn()) {
@@ -42,6 +43,16 @@ const showSingleRideView = (rideId) => {
       const rideDiv = document.querySelector('#ride');
       rideDiv.innerHTML = '';
       rideDiv.insertAdjacentHTML('beforeend', singleRide(ride));
+      // attach event listeners to ride request links
+      const link = document.querySelector('a[href^="#/ride"]');
+      link.addEventListener('click', (evt) => {
+        joinRide(evt, token, rideId, (res) => {
+          console.log(res);
+          if (res.status === 'success') {
+            router(`/ride/${rideId}/join`);
+          }
+        });
+      });
     })
     .catch((error) => {
       console.log(error);
