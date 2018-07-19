@@ -582,6 +582,22 @@ a {
   margin: 0;
 }
 
+.not-found {
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.not-found a {
+  color: orange;
+  font-size: 28px;
+}
+
+.not-found a:hover {
+  text-decoration: underline;
+}
+
 /* media queries */
 @media only screen and (max-width: 800px) {
   .layout-grid {

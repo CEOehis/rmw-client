@@ -6,6 +6,7 @@ import showSingleRideView from '../views/singleRideView'; // eslint-disable-line
 import requestSuccessView from '../views/requestSuccessView'; // eslint-disable-line
 import showUsersRidesView from '../views/usersRidesView'; // eslint-disable-line
 import showRequestsView from '../views/requestsView'; // eslint-disable-line
+import showNotFoundView from '../views/notFoundView'; // eslint-disable-line
 
 const routes = {
   '/': showHomeView,
@@ -15,6 +16,7 @@ const routes = {
   '/ride:id': showSingleRideView,
   '/join': requestSuccessView,
   '/user/rides': showUsersRidesView,
+  '/not-found': showNotFoundView,
 };
 
 window.routes = routes;
@@ -40,6 +42,11 @@ export default function router(route) {
   if (viewRequestsRegex.test(currentRoute)) {
     const rideId = /\d+/.exec(currentRoute)[0];
     return showRequestsView(rideId);
+  }
+
+  // handle 404's
+  if (routes[currentRoute] === undefined) {
+    return routes['/not-found']();
   }
 
   return routes[currentRoute]();
