@@ -7,6 +7,7 @@ import requestSuccessView from '../views/requestSuccessView'; // eslint-disable-
 import showUsersRidesView from '../views/usersRidesView'; // eslint-disable-line
 import showRequestsView from '../views/requestsView'; // eslint-disable-line
 import showNotFoundView from '../views/notFoundView'; // eslint-disable-line
+import showOfferRideView from '../views/offerRideView'; // eslint-disable-line
 
 const routes = {
   '/': showHomeView,
@@ -17,6 +18,7 @@ const routes = {
   '/join': requestSuccessView,
   '/user/rides': showUsersRidesView,
   '/not-found': showNotFoundView,
+  '/create': showOfferRideView,
 };
 
 window.routes = routes;
