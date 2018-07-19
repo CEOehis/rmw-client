@@ -3,7 +3,8 @@ import showSignupView from '../views/signupView'; // eslint-disable-line
 import showHomeView from '../views/homeView'; // eslint-disable-line
 import logUserOut from '../views/logoutView'; // eslint-disable-line
 import showSingleRideView from '../views/singleRideView'; // eslint-disable-line
-import requestSuccessView from '../views/requestSuccessView';
+import requestSuccessView from '../views/requestSuccessView'; // eslint-disable-line
+import showUsersRidesView from '../views/usersRidesView'; // eslint-disable-line
 
 const routes = {
   '/': showHomeView,
@@ -12,6 +13,7 @@ const routes = {
   '/logout': logUserOut,
   '/ride:id': showSingleRideView,
   '/join': requestSuccessView,
+  '/user/rides': showUsersRidesView,
 };
 
 window.routes = routes;

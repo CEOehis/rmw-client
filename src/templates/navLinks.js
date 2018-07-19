@@ -8,7 +8,7 @@ const navLinks = (user) => {
         <a>Hi, ${user.fullName.split(' ')[0]} <i class="fa fa-chevron-down"></i></a>
         <ul class="dropdown-content">
           <li><a href="#/profile">Profile</a></li>
-          <li><a href="#/my-ride-offers">My Ride Offers</a></li>
+          <li><a href="#/user/rides">My Ride Offers</a></li>
           <li><a href="#/logout">Sign out</a></li>
         </ul>
       </li>
