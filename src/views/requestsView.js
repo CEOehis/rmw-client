@@ -38,7 +38,7 @@ const showRequestsView = (rideId) => {
   // rather than making and parsing the requests separately
   Promise.all([
     // get ride requests
-    fetch(`http://localhost:3000/api/v1/rides/${rideId}/requests`, {
+    fetch(`${__API__}/api/v1/rides/${rideId}/requests`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -48,7 +48,7 @@ const showRequestsView = (rideId) => {
         return response.json();
       }),
     // get ride offer information
-    fetch(`http://localhost:3000/api/v1/rides/${rideId}`, {
+    fetch(`${__API__}/api/v1/rides/${rideId}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,

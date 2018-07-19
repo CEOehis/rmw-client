@@ -16,7 +16,7 @@ const showSignupView = () => {
     const password = document.getElementById('password').value;
     const fullName = document.getElementById('name').value;
     const passwordConfirm = document.getElementById('password2').value;
-    fetch('http://localhost:3000/api/v1/users/signup', {
+    fetch(`${__API__}/api/v1/users/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

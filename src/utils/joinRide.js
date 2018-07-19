@@ -8,7 +8,7 @@
  */
 const joinRide = (evt, token, id, cb) => {
   evt.preventDefault();
-  fetch(`http://localhost:3000/api/v1/rides/${id}/requests`, {
+  fetch(`${__API__}/api/v1/rides/${id}/requests`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,

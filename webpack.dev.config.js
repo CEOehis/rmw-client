@@ -1,5 +1,20 @@
 /* eslint-disable */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+let apiHost;
+
+function setupAPI() {
+  switch (process.env.NODE_ENV) {
+    case 'production':
+      apiHost = "'https://ridemywaycore.herokuapp.com'";
+      break;
+    default:
+      apiHost = "'http://localhost:3000'";
+      break;
+  }
+}
+
+setupAPI();
 
 module.exports = {
   mode: 'development',
@@ -34,6 +49,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: 'index.html',
+    }),
+    new webpack.DefinePlugin({
+      __API__: apiHost
     }),
   ],
 };

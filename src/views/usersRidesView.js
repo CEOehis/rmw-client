@@ -37,7 +37,7 @@ const showUsersRidesView = () => {
 
   const token = localStorage.getItem('token');
   // after component mounts. fetch users ride offers and append to dom
-  fetch('http://localhost:3000/api/v1/rides/user', {
+  fetch(`${__API__}/api/v1/rides/user`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,

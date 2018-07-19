@@ -15,7 +15,7 @@ const showLoginView = () => {
     evt.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    fetch('http://localhost:3000/api/v1/users/login', {
+    fetch(`${__API__}/api/v1/users/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

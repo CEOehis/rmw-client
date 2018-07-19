@@ -5,7 +5,8 @@
       "node": true
     },
     "globals": {
-      "document": false
+      "document": false,
+      "__API__": false
     },
     "rules": {
     "linebreak-style": ["warn", "windows"],
