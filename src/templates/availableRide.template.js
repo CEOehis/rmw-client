@@ -28,7 +28,7 @@ const availableRide = (ride) => {
           <p class="seats">Available seats: ${seats}</p>
         </div>
         <div class="actions">
-          <a href="#/ride-details/${rideId}" class="btn btn-orange btn-lg">Details</a>
+          <a href="#/ride/${rideId}" class="btn btn-orange btn-lg">Details</a>
         </div>
       </div>
     </div>
