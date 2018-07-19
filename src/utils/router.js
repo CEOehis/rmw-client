@@ -5,6 +5,7 @@ import logUserOut from '../views/logoutView'; // eslint-disable-line
 import showSingleRideView from '../views/singleRideView'; // eslint-disable-line
 import requestSuccessView from '../views/requestSuccessView'; // eslint-disable-line
 import showUsersRidesView from '../views/usersRidesView'; // eslint-disable-line
+import showRequestsView from '../views/requestsView'; // eslint-disable-line
 
 const routes = {
   '/': showHomeView,
@@ -33,6 +34,12 @@ export default function router(route) {
   const requestSuccessRegex = /^\/(ride)\/\d+\/(join)$/;
   if (requestSuccessRegex.test(currentRoute)) {
     return routes['/join']();
+  }
+
+  const viewRequestsRegex = /^\/(user)\/(rides)\/\d+\/(requests)$/;
+  if (viewRequestsRegex.test(currentRoute)) {
+    const rideId = /\d+/.exec(currentRoute)[0];
+    return showRequestsView(rideId);
   }
 
   return routes[currentRoute]();
