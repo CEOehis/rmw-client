@@ -9,6 +9,7 @@ coverage
 node_modules/
 .eslintcache
 .env
+dist
 UI
 # my dev notes
 devnotes.md
