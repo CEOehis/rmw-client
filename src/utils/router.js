@@ -8,6 +8,7 @@ import showUsersRidesView from '../views/usersRidesView'; // eslint-disable-line
 import showRequestsView from '../views/requestsView'; // eslint-disable-line
 import showNotFoundView from '../views/notFoundView'; // eslint-disable-line
 import showOfferRideView from '../views/offerRideView'; // eslint-disable-line
+import showProfileView from '../views/profileView'; // eslint-disable-line
 
 const routes = {
   '/': showHomeView,
@@ -19,6 +20,7 @@ const routes = {
   '/user/rides': showUsersRidesView,
   '/not-found': showNotFoundView,
   '/create': showOfferRideView,
+  '/profile': showProfileView,
 };
 
 window.routes = routes;
