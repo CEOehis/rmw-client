@@ -1,6 +1,7 @@
 import userIsLoggedIn from '../utils/userIsLoggedIn';
 import router from '../utils/router'; // eslint-disable-line
 import navbar from '../components/navbar';
+import ridesOffered from '../templates/ridesOffered.template';
 
 const showProfileView = () => {
   if (!userIsLoggedIn()) {
@@ -34,8 +35,8 @@ const showProfileView = () => {
           <div class="ride-history">
             <!-- tab links -->
             <div class="tab">
-              <button class="tablink" onclick="openTab(event, 'rides-taken')" id="defaultTab">Rides Taken (3)</button>
-              <button class="tablink" onclick="openTab(event, 'rides-offered')" >Rides Offered (6)</button>
+              <button class="tablink" onclick="openTab(event, 'rides-taken')" id="takenTab">Rides Taken <span></span></button>
+              <button id="offeredTab" class="tablink" onclick="openTab(event, 'rides-offered')" >Rides Offered <span></span></button>
             </div>
             <!-- tab content -->
             <div id="rides-taken" class="tab-content">
@@ -47,18 +48,6 @@ const showProfileView = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Ikeja</td>
-                    <td>Obalende</td>
-                  </tr>
-                  <tr>
-                    <td>Maryland</td>
-                    <td>Mushin</td>
-                  </tr>
-                  <tr>
-                    <td>Lekki</td>
-                    <td>Oshodi</td>
-                  </tr>
                 </tbody>
               </table>
             </div>
@@ -71,30 +60,6 @@ const showProfileView = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Ikeja</td>
-                    <td>Obalende</td>
-                  </tr>
-                  <tr>
-                    <td>Maryland</td>
-                    <td>Mushin</td>
-                  </tr>
-                  <tr>
-                    <td>Ikeja</td>
-                    <td>Obalende</td>
-                  </tr>
-                  <tr>
-                    <td>Maryland</td>
-                    <td>Mushin</td>
-                  </tr>
-                  <tr>
-                    <td>Ikeja</td>
-                    <td>Obalende</td>
-                  </tr>
-                  <tr>
-                    <td>Maryland</td>
-                    <td>Mushin</td>
-                  </tr>
                 </tbody>
               </table>
             </div>
@@ -109,6 +74,31 @@ const showProfileView = () => {
 
     </footer>
     `;
+
+  const token = localStorage.getItem('token');
+  // after component mounts. fetch user history and append to dom
+  // make separate fetch requests since the views are separate
+  fetch(`${__API__}/api/v1/rides/user`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((response) => {
+      const { rides } = response;
+      const ridesOfferedTable = document.getElementById('rides-offered');
+      const ridesOfferdTableBody = ridesOfferedTable.firstElementChild.lastElementChild;
+      document.getElementById('offeredTab').firstElementChild.textContent = `(${rides.length})`;
+      rides.forEach((ride) => {
+        ridesOfferdTableBody.insertAdjacentHTML('beforeend', ridesOffered(ride));
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
   // ===================
   const menu = document.querySelector('.menu');
@@ -139,7 +129,7 @@ const showProfileView = () => {
   // expose openTab() to global window object since webpack obfuscates
   // code
   window.openTab = openTab;
-  document.getElementById('defaultTab').click();
+  document.getElementById('offeredTab').click();
 };
 
 export default showProfileView;
