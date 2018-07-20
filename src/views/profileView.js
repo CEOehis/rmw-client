@@ -23,9 +23,9 @@ const showProfileView = () => {
             <div class="user-profile-summary">
               <img src="https://placehold.it/100/100" />
               <div class="user-profile-info">
-                <h2 class="user-name">Michael</h2>
-                <p>+234 9091234567</p>
-                <p>mich.ael@mail.com</p>
+                <h2 class="user-name">${user.fullName}</h2>
+                <p>${user.phone === null ? '+234' : user.phone}</p>
+                <p>${user.email}</p>
               </div>
             </div>
             <!-- <button class="btn btn-orange">Edit Profile</button> -->
@@ -109,7 +109,6 @@ const showProfileView = () => {
 
     </footer>
     `;
-
 
   // ===================
   const menu = document.querySelector('.menu');
