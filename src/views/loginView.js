@@ -4,7 +4,7 @@ import router from '../utils/router'; // eslint-disable-line
 
 const showLoginView = () => {
   if (userIsLoggedIn()) {
-    router('/');
+    router('/home');
     return;
   }
   document.getElementById('app').innerHTML = loginTemplate;
@@ -31,7 +31,7 @@ const showLoginView = () => {
       .then((response) => {
         window.localStorage.setItem('token', response.token);
         window.localStorage.setItem('user', JSON.stringify(response.user));
-        router('/');
+        router('/home');
       })
       .catch((error) => {
         console.log(error);

@@ -4,7 +4,7 @@ import router from '../utils/router'; // eslint-disable-line
 
 const showSignupView = () => {
   if (userIsLoggedIn()) {
-    router('/');
+    router('/home');
     return;
   }
   document.getElementById('app').innerHTML = signupTemplate;

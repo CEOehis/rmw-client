@@ -1,9 +1,9 @@
 const navLinks = (user) => {
-  if (user) {
+  if (user !== undefined) {
     return `
       <li><a class="brand" href="#/">RideMyWay</a></li>
       <li><a href="#/create">Offer a Ride</a></li>
-      <li><a href="#/">View Rides</a></li>
+      <li><a href="#/home">View Rides</a></li>
       <li class="dropdown">
         <a>Hi, ${user.fullName.split(' ')[0]} <i class="fa fa-chevron-down"></i></a>
         <ul class="dropdown-content">
@@ -15,10 +15,9 @@ const navLinks = (user) => {
     `;
   }
   return `
-    <li><a class="brand" href="./index.html">RideMyWay</a></li>
-    <li><a href="#how">How it works</a></li>
-    <li><a href="./register.html">Register</a></li>
-    <li><a href="./login.html">Login</a></li>
+    <li><a class="brand" href="#/">RideMyWay</a></li>
+    <li><a href="#/register">Register</a></li>
+    <li><a href="#/login">Login</a></li>
   `;
 };
 

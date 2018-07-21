@@ -9,9 +9,11 @@ import showRequestsView from '../views/requestsView'; // eslint-disable-line
 import showNotFoundView from '../views/notFoundView'; // eslint-disable-line
 import showOfferRideView from '../views/offerRideView'; // eslint-disable-line
 import showProfileView from '../views/profileView'; // eslint-disable-line
+import showLandingView from '../views/landingView'; // eslint-disable-line
 
 const routes = {
-  '/': showHomeView,
+  '/': showLandingView,
+  '/home': showHomeView,
   '/login': showLoginView,
   '/register': showSignupView,
   '/logout': logUserOut,
