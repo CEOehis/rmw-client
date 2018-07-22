@@ -16,8 +16,8 @@ const showSignupView = () => {
   // listen for keydown event on password inputs
   // so when user fixes validation errors, the previous message is cleared
   // get reference to both password inputs
-  const passwordInputs = document.querySelectorAll('input[type="password"]');
-  passwordInputs.forEach((input) => {
+  const formInputs = document.querySelectorAll('input');
+  formInputs.forEach((input) => {
     input.addEventListener('keydown', () => {
       validationMessageDiv.classList.remove('error');
       validationMessageDiv.innerHTML = '';
@@ -32,6 +32,13 @@ const showSignupView = () => {
     const password = document.getElementById('password').value;
     const fullName = document.getElementById('name').value;
     const passwordConfirm = document.getElementById('password2').value;
+
+    // check if fullName supplied is less than 2 chars long
+    if (fullName.length < 2) {
+      validationMessageDiv.classList.add('error');
+      validationMessageDiv.innerHTML = '<p>Full Name can\'t be less than <br /> 2 characters.</p>';
+      return ;
+    }
 
     // check if password is less than 6 chars long
     if (password.length < 6) {
@@ -67,9 +74,13 @@ const showSignupView = () => {
         return response.json();
       })
       .then((response) => {
-        window.localStorage.setItem('token', response.token);
-        window.localStorage.setItem('user', JSON.stringify(response.user));
-        router('/');
+        if (response.status === 'success') {
+          window.localStorage.setItem('token', response.token);
+          window.localStorage.setItem('user', JSON.stringify(response.user));
+          router('/');
+        }
+        validationMessageDiv.classList.add('error');
+        validationMessageDiv.innerHTML = `<p>${response.message}</p>`;
       })
       .catch((error) => {
         console.log(error);
