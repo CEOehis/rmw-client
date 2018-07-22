@@ -8,6 +8,22 @@ const showSignupView = () => {
     return;
   }
   document.getElementById('app').innerHTML = signupTemplate;
+
+  // after template is loaded to page, attach event listeners
+  // to handle user signup
+
+  const validationMessageDiv = document.querySelector('.report');
+  // listen for keydown event on password inputs
+  // so when user fixes validation errors, the previous message is cleared
+  // get reference to both password inputs
+  const passwordInputs = document.querySelectorAll('input[type="password"]');
+  passwordInputs.forEach((input) => {
+    input.addEventListener('keydown', () => {
+      validationMessageDiv.classList.remove('error');
+      validationMessageDiv.innerHTML = '';
+    });
+  });
+
   // handle form submit event
   const form = document.getElementById('register');
   form.addEventListener('submit', (evt) => {
@@ -16,6 +32,25 @@ const showSignupView = () => {
     const password = document.getElementById('password').value;
     const fullName = document.getElementById('name').value;
     const passwordConfirm = document.getElementById('password2').value;
+
+    // check if password is less than 6 chars long
+    if (password.length < 6) {
+      validationMessageDiv.classList.add('error');
+      validationMessageDiv.innerHTML = '<p>Password can\'t be less than <br /> 6 characters.</p>';
+      // exit early
+      return;
+    }
+
+    // if confirmation password is not empty
+    // check if password and confirmation password are equal
+    if (passwordConfirm !== '') {
+      if (password !== passwordConfirm) {
+        validationMessageDiv.classList.add('error');
+        validationMessageDiv.innerHTML = '<p>passwords do not match</p>';
+        return;
+      }
+    }
+    // all clear here, attempt api call with input data
     fetch(`${__API__}/api/v1/users/signup`, {
       method: 'POST',
       headers: {
