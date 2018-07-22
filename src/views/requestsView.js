@@ -3,6 +3,29 @@ import router from '../utils/router'; // eslint-disable-line
 import navbar from '../components/navbar';
 import rideRequests from '../templates/rideRequests.template';
 
+const updateStatus = ({ reqId, rideId, action }, token) => {
+  console.log({ reqId, rideId, action });
+  fetch(`${__API__}/api/v1/rides/${rideId}/requests/${reqId}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      status: action,
+    }),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then(() => {
+      showRequestsView(rideId); // eslint-disable-line
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 const showRequestsView = (rideId) => {
   if (!userIsLoggedIn()) {
     window.location.hash = '/login';
@@ -62,6 +85,14 @@ const showRequestsView = (rideId) => {
       const rideRequestsDiv = document.querySelector('.ride-requests');
       rideRequestsDiv.innerHTML = '';
       rideRequestsDiv.insertAdjacentHTML('beforeend', rideRequests(res));
+      // attach event listeners to handle status update
+      const resLinks = document.querySelectorAll('a[rel=js]');
+      resLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          updateStatus(e.target.dataset, token);
+        });
+      });
     })
     .catch((error) => {
       console.log(error);

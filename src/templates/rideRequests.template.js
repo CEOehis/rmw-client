@@ -32,8 +32,10 @@ const requests = (requestInfo) => {
           </div>
         </div>
         <div class="actions">
-          <a href="./my-ride-offers.html" class="btn btn-orange">Accept</a>
-          <a href="./my-ride-offers.html" class="btn btn-orange-inverse">Decline</a>
+          ${request.offerStatus === 'pending' ? `
+            <a rel="js" data-req-id=${request.requestId} data-ride-id=${request.rideId} data-action="accept" class="btn btn-orange">Accept</a>
+            <a rel="js" data-req-id=${request.requestId} data-ride-id=${request.rideId} data-action="reject" class="btn btn-orange-inverse">Reject</a>`
+    : `Request ${request.offerStatus}`}
         </div>
       </div>
     `;
@@ -50,6 +52,5 @@ const rideRequests = (requestData) => {
     ${requests(requestInfo)}
   `;
 };
-
 
 export default rideRequests;
