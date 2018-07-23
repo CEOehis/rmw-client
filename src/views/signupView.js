@@ -84,7 +84,7 @@ const showSignupView = () => {
         if (response.status === 'success') {
           window.localStorage.setItem('token', response.token);
           window.localStorage.setItem('user', JSON.stringify(response.user));
-          router('/');
+          router('/home');
         }
         validationMessageDiv.classList.add('error');
         validationMessageDiv.innerHTML = `<p>${response.message}</p>`;

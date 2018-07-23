@@ -41,7 +41,7 @@ const showLoginView = () => {
     // get reference to form submit button
     const submitButton = form.querySelector('input[type="submit"]');
     // add visual cues and disable button to prevent firing multiple submit events
-    submitButton.value = '...singing in';
+    submitButton.value = '...signing in';
     submitButton.classList.add('submitting');
     submitButton.disabled = true;
     // all clear here, attempt api call with input data
