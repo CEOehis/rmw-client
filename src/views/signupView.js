@@ -57,6 +57,13 @@ const showSignupView = () => {
         return;
       }
     }
+
+    // get reference to form submit button
+    const submitButton = form.querySelector('input[type="submit"]');
+    // add visual cues and disable button to prevent firing multiple submit events
+    submitButton.value = '...submitting';
+    submitButton.classList.add('submitting');
+    submitButton.disabled = true;
     // all clear here, attempt api call with input data
     fetch(`${__API__}/api/v1/users/signup`, {
       method: 'POST',
@@ -81,9 +88,15 @@ const showSignupView = () => {
         }
         validationMessageDiv.classList.add('error');
         validationMessageDiv.innerHTML = `<p>${response.message}</p>`;
+        submitButton.value = 'submit';
+        submitButton.classList.remove('submitting');
+        submitButton.disabled = false;
       })
       .catch((error) => {
         console.log(error);
+        submitButton.value = 'submit';
+        submitButton.classList.remove('submitting');
+        submitButton.disabled = false;
       });
   });
   // ===================
