@@ -49,6 +49,17 @@ const showLandingView = () => {
 
     </footer>
   `;
+  // ===================
+  const menu = document.querySelector('.menu');
+  const navLinks = document.querySelector('.nav-links');
+  menu.addEventListener('click', () => {
+    const navClasses = [...navLinks.classList];
+    if (navClasses.includes('expanded')) {
+      navLinks.classList.remove('expanded');
+      return;
+    }
+    navLinks.classList.add('expanded');
+  });
 };
 
 export default showLandingView;
