@@ -21,7 +21,7 @@ const requestSuccessView = () => {
               <i class="fa fa-check-circle-o fa-5x" aria-hidden="true"></i>
               <p>Your request to join the ride has been received! You should get a notification when the Ride owner accepts your request.</p>
             </div>
-            <a class="btn btn-orange btn-lg" href="#/">Back to Rides</a>
+            <a class="btn btn-orange btn-lg" href="#/home">Back to Rides</a>
           </div>
         </div>
       </div>

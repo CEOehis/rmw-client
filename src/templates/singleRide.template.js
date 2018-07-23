@@ -14,6 +14,7 @@ const singleRide = (ride) => {
     rideId,
   } = ride;
 
+  const user = JSON.parse(window.localStorage.getItem('user'));
   return `
     <h1>${origin} to ${destination}</h1>
     <div class="ride-details">
@@ -42,8 +43,11 @@ const singleRide = (ride) => {
           </tr>
         </table>
         <div class="call-to-action">
-          <a class="btn btn-orange btn-lg" href="#/ride/${rideId}/join">Join this Ride</a>
-          <a class="btn btn-orange-inverse btn-lg" href="#/">More Rides</a>
+${user.email !== email
+    ? `<a class="btn btn-orange btn-lg" href="#/ride/${rideId}/join">Join this Ride</a>`
+    : ''
+}
+          <a class="btn btn-orange-inverse btn-lg" href="#/home">More Rides</a>
         </div>
       </div>
       <div class="driver-profile">
