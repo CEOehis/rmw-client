@@ -44,7 +44,7 @@ const singleRide = (ride) => {
         </table>
         <div class="call-to-action">
 ${user.email !== email
-    ? `<a class="btn btn-orange btn-lg" href="#/ride/${rideId}/join">Join this Ride</a>`
+    ? `<button class="btn btn-orange btn-lg" href="#/ride/${rideId}/join">Join this Ride</button>`
     : ''
 }
           <a class="btn btn-orange-inverse btn-lg" href="#/home">More Rides</a>

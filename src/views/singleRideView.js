@@ -44,10 +44,16 @@ const showSingleRideView = (rideId) => {
       rideDiv.innerHTML = '';
       rideDiv.insertAdjacentHTML('beforeend', singleRide(ride));
       // attach event listeners to ride request links
-      const link = document.querySelector('a[href^="#/ride"]');
-      link.addEventListener('click', (evt) => {
+      const btn = document.querySelector('button[href^="#/ride"]');
+      btn.addEventListener('click', (evt) => {
+        btn.classList.add('submitting');
+        btn.textContent = '...requesting';
+        btn.disabled = true;
         joinRide(evt, token, rideId, (res) => {
           console.log(res);
+          btn.classList.remove('submitting');
+          btn.textContent = 'Join this Ride';
+          btn.disabled = false;
           if (res.status === 'success') {
             router(`/ride/${rideId}/join`);
           }

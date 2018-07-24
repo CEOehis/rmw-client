@@ -225,10 +225,13 @@ a {
   margin-top: 20px;
 }
 
+.submitting,
+.submitting:hover,
 .btn-submit.submitting,
 .btn-submit.submitting:hover {
   background-color: #ccc;
   color: white;
+  cursor: not-allowed;
 }
 
 .p-100 {
