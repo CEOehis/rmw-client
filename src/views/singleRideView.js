@@ -43,6 +43,31 @@ const showSingleRideView = (rideId) => {
       const rideDiv = document.querySelector('#ride');
       rideDiv.innerHTML = '';
       rideDiv.insertAdjacentHTML('beforeend', singleRide(ride));
+
+      // after the rideDiv has been rendered make another ajax request
+      // to check if user has requested for this ride before
+      fetch(`${__API__}/api/v1/requests?rideId=${rideId}`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((result) => {
+          return result.json();
+        })
+        .then((result) =>  {
+          const { requests } = result;
+          const usersRequest = requests.find((request) => {
+            return request.userId == user.userId; // eslint-disable-line
+          });
+          const btn = document.querySelector('button[href^="#/ride"]');
+          if (typeof usersRequest !== 'undefined') {
+            btn.classList.add('submitting');
+            btn.textContent = 'request pending';
+            btn.disabled = true;
+          }
+        });
+
       // attach event listeners to ride request links
       const btn = document.querySelector('button[href^="#/ride"]');
       btn.addEventListener('click', (evt) => {
@@ -50,7 +75,6 @@ const showSingleRideView = (rideId) => {
         btn.textContent = '...requesting';
         btn.disabled = true;
         joinRide(evt, token, rideId, (res) => {
-          console.log(res);
           btn.classList.remove('submitting');
           btn.textContent = 'Join this Ride';
           btn.disabled = false;
