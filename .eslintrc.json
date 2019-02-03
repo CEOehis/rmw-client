@@ -9,7 +9,7 @@
       "__API__": false
     },
     "rules": {
-    "linebreak-style": ["warn", "windows"],
+    // "linebreak-style": ["warn", "windows"],
     "arrow-body-style": ["error", "always"],
     "strict": ["error", "never"],
     "object-curly-newline": ["error", { "consistent": true }],
